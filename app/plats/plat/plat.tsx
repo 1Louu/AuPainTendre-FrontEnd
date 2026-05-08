@@ -1,9 +1,17 @@
-export default function Plat() {
+import { PlatType } from "@/types/plat";
+
+type PlatProps = {
+  plat: PlatType;
+  onClick: () => void;
+};
+
+export default function Plat({ plat, onClick }: PlatProps) {
     return(
-        <div className="bg-white p-8 text-center shadow-md/20 rounded-4xl ">
+        <div onClick={onClick} className="bg-white p-8 text-center shadow-md/20 rounded-4xl ">
             <img className="rounded-2xl shadow-md/20"src="/plat.png" width="200" height="200"/>
-            <h1 className="text-xl font-bold mt-7 mb-3">Nom Plat</h1>
-            <p>Prix : 30€</p>
+            <h2>{plat.name}</h2>
+            <p>{plat.description}</p>
+            <p>{plat.price} €</p>
         </div>
     )
 }

@@ -1,20 +1,16 @@
-import Plat from "./plat/plat"
+import PlatsClient from "./platsClient";
+import { PlatType } from "@/types/plat";
 
-export default function Plats() {
-    return(
-        <div className="px-[10vw] py-10">
-            <h1 className="text-center text-4xl font-bold">Les plats préparés pour vous !</h1>
-            <div className="flex flex-wrap my-10 gap-2">
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-                <Plat/>
-            </div>
-        </div>
-    )
+async function getPlats(): Promise<PlatType[]> {
+  const res = await fetch("http://localhost:8080/api/plats", {
+    cache: "no-store",
+  });
+
+  return res.json();
+}
+
+export default async function Page() {
+  const posts = await getPlats();
+
+  return <PlatsClient posts={posts} />;
 }
