@@ -31,7 +31,7 @@ export default function PlatsClient({ posts }: Props) {
 
         
       {selectedPlat && ( /* equivalent de si selectedPlat alors composant SelectedPlat == vrai*/
-        <SelectedPlat plat={selectedPlat} />
+        <SelectedPlat plat={selectedPlat} onClose={() => setSelectedPlat(null)} />
       )}
     </div>
   );
